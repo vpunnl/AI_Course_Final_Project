@@ -51,42 +51,6 @@ def no_collision(move,moving_agent,another_agent):
 
 def simulate_move(board, new_pos):
     new_board = [row[:] for row in board]
-    new_board[new_pos[0]][new_pos[1]] = 0
-    return new_board
-
-
-def evaluate_board(board):
-    score = 0
-    for row in board:
-        for cell in row:
-            if cell == 1: 
-                score += 10
-            elif cell == 2: 
-                score += 2
-    return score
-
-def is_terminal(board):
-    return all(cell == 0 for row in board for cell in row)
-
-def no_collision(move,moving_agent,another_agent):
-    mvx,mvy = moving_agent.position
-    if move == 'up':
-        mvx -= 1
-    elif move == 'down':
-        mvx += 1
-    elif move == 'left':
-        mvy -= 1
-    elif move == 'right':
-        mvy += 1
-    ax,ay = another_agent.position
-
-    if mvx != ax and mvy != ay:
-        return True
-    else:
-        return False
-
-def simulate_move(board, new_pos):
-    new_board = [row[:] for row in board]
     new_board[new_pos[0]][new_pos[1]] = 0 
     return new_board
 
