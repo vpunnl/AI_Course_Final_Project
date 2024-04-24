@@ -158,7 +158,7 @@ class GeneticAlgorithm:
             elif move == 'right' and y < len(simulated_board[0]) - 1:
                 y += 1
 
-            if simulated_board[x][y] == 1:
+            if simulated_board[x][y] == 1 or simulated_board[x][y] == 2:
                 score += 10
                 consecutive_coins+=1
                 if consecutive_coins == 3:
@@ -255,7 +255,9 @@ class GameBoard:
     def __init__(self, size=8):
         self.size = size
         self.board = [[random.choice([0,1,2]) for _ in range(size)] for _ in range(size)]
-
+        self.board[0][0] = 0
+        self.board[7][7] = 0
+    
     def toggle_visibility(self):
         """Randomly toggle visibility of coins."""
         for row in range(self.size):
