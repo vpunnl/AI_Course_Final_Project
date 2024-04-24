@@ -146,6 +146,7 @@ class GeneticAlgorithm:
     def fitness(self, path, start_position):
         x, y = start_position
         score = 0
+        consecutive_coins = 0
         simulated_board = [row[:] for row in self.board.board]
         for move in path:
             if move == 'up' and x > 0:
@@ -159,7 +160,13 @@ class GeneticAlgorithm:
 
             if simulated_board[x][y] == 1:
                 score += 10
+                consecutive_coins+=1
+                if consecutive_coins == 3:
+                    score += 90
+                    consecutive_coins = 0
                 simulated_board[x][y] = 0
+            else:
+                consecutive_coins = 0
         return score
 
     def select(self):
